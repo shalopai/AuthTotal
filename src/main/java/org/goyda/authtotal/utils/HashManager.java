@@ -1,6 +1,8 @@
 package org.goyda.authtotal.utils;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 public class HashManager {
     public static String hashPassword(String password) {
         try {
