@@ -1,0 +1,4 @@
+name: AuthTotal
+version: '${project.version}'
+main: org.goyda.authtotal.AuthTotal
+api-version: '1.19'
