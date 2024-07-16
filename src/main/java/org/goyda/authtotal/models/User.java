@@ -7,6 +7,9 @@ import org.goyda.authtotal.utils.HashManager;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.UUID;
 
@@ -29,6 +32,15 @@ public class User {
     @Column(name = "last_login")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastLogin;
+
+    public boolean loginAvailable() {
+        return ChronoUnit.DAYS.between(this.getLastLogin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                LocalDate.now()) > 3;
+    }
+
+    public boolean loginUnavailable() {
+        return !loginAvailable();
+    }
 
     public void setPassword(String password) {
         this.password = HashManager.hashPassword(password);
