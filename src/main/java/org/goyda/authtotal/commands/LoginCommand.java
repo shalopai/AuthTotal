@@ -3,13 +3,17 @@ package org.goyda.authtotal.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.plugin.Plugin;
 import org.goyda.authtotal.AuthTotal;
 import org.goyda.authtotal.commands.utils.AbstractCommand;
 import org.goyda.authtotal.commands.utils.Messages;
 import org.goyda.authtotal.models.User;
 import org.goyda.authtotal.repositories.UserDAO;
+import org.jetbrains.annotations.NotNull;
 
+import javax.swing.plaf.SplitPaneUI;
 import java.util.Date;
+import java.util.UUID;
 
 public class LoginCommand extends AbstractCommand {
     public LoginCommand() {
@@ -42,9 +46,8 @@ public class LoginCommand extends AbstractCommand {
         user.setLoginned(true);
         user.setLastLogin(new Date());
         new UserDAO().update(user);
-        sender.sendMessage("Вы успешно вошли");
         PermissionAttachment attachment = player.addAttachment(AuthTotal.getInstance());
-        attachment.setPermission("authtotal.player.authorized", true);
+        attachment.setPermission("authtotal.player.authorized",true);
     }
 
 }
