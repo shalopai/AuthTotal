@@ -35,7 +35,7 @@ public class User {
 
     public boolean loginAvailable() {
         return ChronoUnit.DAYS.between(this.getLastLogin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                LocalDate.now()) > 3;
+                LocalDate.now()) < 3;
     }
 
     public boolean loginUnavailable() {
