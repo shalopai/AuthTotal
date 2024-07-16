@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.goyda.authtotal.AuthTotal;
 import org.goyda.authtotal.models.User;
 import org.goyda.authtotal.repositories.UserDAO;
@@ -24,5 +26,18 @@ public class UserListener implements Listener {
             return;
         }
         player.sendMessage("/register <password> <password>");
+
     }
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPermission("authtotal.player.authorized"))
+            return;
+        event.setCancelled(true);
+
+    }
+
+
+
+
 }

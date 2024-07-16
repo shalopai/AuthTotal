@@ -2,6 +2,10 @@ name: AuthTotal
 version: '${project.version}'
 main: org.goyda.authtotal.AuthTotal
 api-version: '1.19'
+permissions:
+  authtotal.player.authorized:
+    default: false
+    description: "jopa"
 commands:
   register:
     aliases:
